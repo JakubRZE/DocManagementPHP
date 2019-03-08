@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::get('/sites', 'SitesController@Index');
 Route::get('/sites/add', 'SitesController@Add');
+Route::post('/save',[
+    'uses' => 'SitesController@Save',
+    'as' => 'Sites.save'
+]);
 
 
 

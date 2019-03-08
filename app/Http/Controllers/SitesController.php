@@ -15,4 +15,9 @@ class SitesController extends Controller
     {
         return view('sites.add');
     }
+
+    public function Save()
+    {
+
+    }
 }
