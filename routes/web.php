@@ -15,17 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 Route::get('/sites', 'SitesController@Index');
 Route::get('/sites/add', 'SitesController@Add');
 Route::post('/save',[
     'uses' => 'SitesController@Save',
     'as' => 'Sites.save'
 ]);
-
-
+*/
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('documents','DocumentsController');

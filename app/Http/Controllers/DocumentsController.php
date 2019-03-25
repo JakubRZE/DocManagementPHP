@@ -13,7 +13,7 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-       // return 'Dzien dobry!';
+        echo 'Hello Dasboard';
     }
 
     /**
