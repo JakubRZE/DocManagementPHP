@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function Index()
     {
-        echo 'Hello Dasboard';
+        return view('dashboard.index');
     }
 
     public function ActiveEmployees()
