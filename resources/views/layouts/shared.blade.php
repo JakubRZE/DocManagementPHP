@@ -11,6 +11,9 @@
 <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/sb-admin.js') }}" defer></script>
+    <script src="{{ asset('js/sb-admin.min.js') }}" defer></script>
+    {{--<script type="text/javascript" src="{{ asset('js/sb-admin.js') }}"></script>--}}
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,8 +23,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('resource/css/site.css') }}" rel="stylesheet">
-    <link href="{{ asset('resource/css/sb-admin.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/site.css') }}" rel="stylesheet">
+
+
 </head>
 
 <body id="page-top" class="body">
