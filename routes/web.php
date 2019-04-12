@@ -11,11 +11,8 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('auth.login');
-//});
 
-Route::get('/', 'HomeController@Guest');
+Route::get('/', 'DashboardController@Index');
 
 /*
 Route::get('/sites', 'SitesController@Index');
@@ -27,7 +24,5 @@ Route::post('/save',[
 */
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('documents','DocumentsController');
-
 Route::get('/Dashboard/Index', 'DashboardController@Index');

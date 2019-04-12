@@ -10,7 +10,11 @@
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span>Welcome, {{ Auth::user()->first_name }} </span> <i class="fas fa-user-circle fa-fw"></i>
+                    <span>Welcome,
+                        @if($user = Auth::user())
+                             {{ Auth::user()->first_name }}
+                        @endif
+                    </span> <i class="fas fa-user-circle fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href='#'>Account settings</a>
