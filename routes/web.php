@@ -30,4 +30,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('documents','DocumentsController');
 
-Route::get('/lol', 'DashboardController@Index');
+Route::get('/Dashboard/Index', 'DashboardController@Index');
