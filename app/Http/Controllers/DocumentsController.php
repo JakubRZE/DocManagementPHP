@@ -18,7 +18,7 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        echo 'Hello Dasboard';
+        return view('document.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        //
+        echo 'elo';
     }
 
     /**
