@@ -25,6 +25,7 @@ Route::post('/save',[
 
 Auth::routes();
 Route::resource('documents','DocumentsController');
-Route::get('/dashboard/index', 'DashboardController@Index');
-Route::get('/dashboard', 'DashboardController@Index');
-Route::get('/activity', 'ActivityController@Index');
+Route::get('/dashboard/index', 'DashboardController@index');
+Route::get('/dashboard', 'DashboardController@index');
+Route::get('/activity', 'ActivityController@index');
+Route::get('/manage', 'ManageController@index');

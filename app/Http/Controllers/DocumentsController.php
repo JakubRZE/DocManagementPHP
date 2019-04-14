@@ -28,7 +28,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        echo 'elo';
+        return view('document.create');
     }
 
     /**

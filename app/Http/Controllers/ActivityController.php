@@ -13,6 +13,6 @@ class ActivityController extends Controller
 
     public function Index()
     {
-        echo 'Hello Activity';
+        return view('activity.index');
     }
 }
