@@ -3,66 +3,68 @@
 @section('title', 'Manage')
 
 @section('content')
+    <div class="card border-primary margin-top-light mb-3 mx-auto" style="max-width: 40rem;">
+        <div class="card-header"><h4>Change Password Form</h4></div>
+            <div class="card-body">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        <form class="form-horizontal" method="POST" action="{{ route('changePassword') }}">
+                            {{ csrf_field() }}
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                            <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                                <label for="new-password" class="col-md-4 control-label">Current Password</label>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ url('/manage/change_done') }}">
-                        @csrf
+                                <div class="col-md-10">
+                                    <input id="current-password" type="password" class="form-control" name="current-password" required>
 
-                        <input type="hidden" name="token" value="{{csrf_token()}}">
-
-                        <div class="form-group row">
-                            <label for="current_psw" class="col-md-4 col-form-label text-md-right">{{ __('Current password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="current_psw" type="password" class="form-control{{ $errors->has('current_psw') ? ' is-invalid' : '' }}" name="current_psw" value="{{ $current_psw ?? old('current_psw') }}" required autofocus>
-
-                                @if ($errors->has('current_psw'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('current_psw') }}</strong>
+                                    @if ($errors->has('current-password'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('current-password') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                                <label for="new-password" class="col-md-4 control-label">New Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <div class="col-md-10">
+                                    <input id="new-password" type="password" class="form-control" name="new-password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                    @if ($errors->has('new-password'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('new-password') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="form-group">
+                                <label for="new-password-confirm" class="col-md-4 control-label">Confirm New Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <div class="col-md-10">
+                                    <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                            <hr />
+                            <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        Change Password
+                                    </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
