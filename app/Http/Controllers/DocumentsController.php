@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use Illuminate\Http\Request;
+use Auth;
 
 class DocumentsController extends Controller
 {
@@ -39,7 +41,16 @@ class DocumentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+        'description' => 'required'
+        ]);
+
+        $document = new Document();
+        $document->description = $request->input('description');
+        $document->user_id = auth()->user()->id;
+        $document->save();
+
+        return redirect()->route('documents.create')->with('success', 'Data added');
     }
 
     /**

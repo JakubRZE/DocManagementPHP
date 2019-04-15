@@ -29,3 +29,5 @@ Route::get('/dashboard/index', 'DashboardController@index');
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/activity', 'ActivityController@index');
 Route::get('/manage', 'ManageController@index');
+Route::get('/manage/change_psw', 'ManageController@change_psw');
+Route::post('/manage/change_done', 'ManageController@change_done');
