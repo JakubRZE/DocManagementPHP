@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
+
+
 
 class DocumentsController extends Controller
 {
@@ -20,7 +23,8 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        return view('document.index');
+        $documents = Document::all();
+        return view('document.index', compact('documents'));
     }
 
     /**
@@ -41,9 +45,9 @@ class DocumentsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-        'description' => 'required'
-        ]);
+//        $this->validate($request, [
+//        'description' => 'required'
+//        ]);
 
         $document = new Document();
         $document->description = $request->input('description');
@@ -61,7 +65,18 @@ class DocumentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $document = Document::find($id);
+
+//        $document = DB::table('documents')
+//            ->join('users', 'documents.user_id', '=', 'users.id')
+//            ->where('documents.id', $id)
+//            ->select('documents.*', 'users.first_name', 'users.last_name')
+//            ->get();
+
+       $user_name = User::find($document->user_id);
+       $full_name = $user_name->first_name.' '.$user_name->last_name;
+
+        return view('document.show',compact('document','full_name'));
     }
 
     /**
@@ -72,7 +87,7 @@ class DocumentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('document.edit');
     }
 
     /**
@@ -93,6 +108,12 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function destroy_show($id)
+    {
+        return view('document.destroy');
+    }
+
     public function destroy($id)
     {
         //

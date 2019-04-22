@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Document extends Model
 {
-    protected $fillable = ['description', 'user_id'];
+    protected $fillable = ['description' , 'user_id'];
 
     public function downloads()
     {

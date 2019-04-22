@@ -8,7 +8,6 @@
         <div class="card-body">
             <h4 class="card-title">Add new document</h4>
 
-
             <form action = "{{route('documents.store')}}" method = "post">
                 <input type = "hidden" name = "_token" value = "{{csrf_token()}}">
 
@@ -18,7 +17,7 @@
                     <div class="form-group">
                         <label class = "control-label col-md-4">Description</label>
                         <div class="col-md-10">
-                            <input class = "form-control" type='text' name='stud_name' />
+                            <input class = "form-control" type='text' name='description' />
                         </div>
                     </div>
 
@@ -44,8 +43,9 @@
                         </div>
                     @endif
                     @if(\Session::has('success'))
+                        <hr />
                       <div class="alert alert-success">
-                          <p>{{\Session::Get('success')}}</p>
+                          {{\Session::Get('success')}}
                       </div>
                     @endif
 
