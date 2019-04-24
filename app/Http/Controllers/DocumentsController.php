@@ -48,6 +48,9 @@ class DocumentsController extends Controller
 //        $this->validate($request, [
 //        'description' => 'required'
 //        ]);
+//        if($request->hasFile('file')){
+//            return 'yes';
+//        } 
 
         $document = new Document();
         $document->description = $request->input('description');
