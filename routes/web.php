@@ -24,4 +24,4 @@ Route::get('/manage', 'ManageController@index');
 Route::get('/manage/change_psw', 'ManageController@change_psw');
 Route::post('/manage/change_done','ManageController@change_done')->name('changePassword');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('download');
-
+Route::get('/documents/delete/{id}','DocumentsController@destroy_show')->name('destroy.show');

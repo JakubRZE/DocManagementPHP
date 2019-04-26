@@ -51,7 +51,7 @@
                                             {{$document->created_at->format('d M Y')}}
                                         </td>
                                         <td>
-                                            Name
+                                            {{ $document->title }}
                                         </td>
                                         <td>
                                             Downloads
@@ -60,7 +60,7 @@
                                             {{--@if (User.IsInRole("Admin"))--}}
                                                 {{--{--}}
                                             <a href="{{route('documents.edit', $document->id)}}">Edit</a> |
-                                            <a href="{{route('documents.destroy', $document->id)}}">Delete</a> |
+                                            <a href="{{route('destroy.show', $document->id)}}">Delete</a> |
                                                 {{--}--}}
                                             <a href="{{route('documents.show', $document->id)}}">Details</a> |
                                             <a href="{{route('download', $document->id)}}">Download</a>

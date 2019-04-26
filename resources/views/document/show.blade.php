@@ -41,7 +41,7 @@
      </dt>
 
      <dd>
-      {{--@Html.DisplayFor(model => model.Name)--}}
+      {{ $document->title }}
      </dd>
 
      <dt>
@@ -49,7 +49,7 @@
      </dt>
 
      <dd>
-      {{--@Html.DisplayFor(model => model.ContentType)--}}
+      {{$document->type}}
      </dd>
 
      <dt>

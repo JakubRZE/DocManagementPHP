@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Document;
 use App\User;
 use Illuminate\Http\Request;
-use Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class DocumentsController extends Controller
 {
@@ -57,7 +55,8 @@ class DocumentsController extends Controller
             'description' =>$request->input('description'),
             'user_id'=> auth()->user()->id,
             'title' => $upload->getClientOriginalName(),
-            'path' => $path
+            'path' => $path,
+            'type' => $upload->getClientOriginalExtension()
         ]);
 
         return redirect('documents/create')->with('success','File uploaded!');
@@ -124,11 +123,19 @@ class DocumentsController extends Controller
 
     public function destroy_show($id)
     {
-        return view('document.destroy');
+        $document = Document::find($id);
+
+        $user_name = User::find($document->user_id);
+        $full_name = $user_name->first_name.' '.$user_name->last_name;
+
+        return view('document.destroy',compact('document','full_name', 'type'));
     }
 
     public function destroy($id)
     {
-        //
+        $document = Document::find($id);
+        $document->delete();
+
+        return redirect('documents');
     }
 }
