@@ -6,8 +6,7 @@ use App\Document;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
-
-
+use Illuminate\Support\Facades\Validator;
 
 class DocumentsController extends Controller
 {
@@ -43,21 +42,24 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//        'description' => 'required'
-//        ]);
-//        if($request->hasFile('file')){
-//            return 'yes';
-//        } 
+        $this->validate($request,[
+            'file' => 'required|file|max:250000|mimes:doc,docx,txt',
+            'description' => 'required'
+        ]);
 
-        $document = new Document();
-        $document->description = $request->input('description');
-        $document->user_id = auth()->user()->id;
-        $document->save();
+        $upload = $request->file('file');
+        $path = $upload->store('storage');
+        Document::create([
+            'description' =>$request->input('description'),
+            'user_id'=> auth()->user()->id,
+            'title' => $upload->getClientOriginalName(),
+            'path' => $path
+        ]);
 
-        return redirect()->route('documents.create')->with('success', 'Data added');
+        return redirect('documents/create')->with('success','File uploaded!');
     }
 
     /**

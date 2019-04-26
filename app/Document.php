@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $fillable = ['description' , 'user_id'];
+    protected $fillable = ['description', 'user_id','title','path'];
 
     public function downloads()
     {

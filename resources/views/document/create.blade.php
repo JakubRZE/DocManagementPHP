@@ -13,19 +13,20 @@
 
                 <div class="form-horizontal">
                     <hr />
-
                     <div class="form-group">
                         <label class = "control-label col-md-4">Description</label>
                         <div class="col-md-10">
                             <input class = "form-control" type='text' name='description' />
                         </div>
+                        @if ($errors->has('description')) <p class="help-block">{{ $errors->first('description') }}</p> @endif
                     </div>
 
                     <div class="form-group">
-                        <label class = "control-label col-md-4">Document</label>
+                        <label class = "control-label col-md-4">Document:</label>
                         <div class="col-md-10">
-                            <input type="file" id="btnUpload" name="file" />
+                            <input type="file" name="file"/>
                         </div>
+                        @if ($errors->has('file')) <p class="help-block">{{ $errors->first('file') }}</p> @endif
                     </div>
                     <hr />
 
@@ -33,15 +34,6 @@
                         <input type="submit" value="Upload" class="btn btn-dark" />
                     </div>
 
-                    @if(count($errors)>0)
-                        <div class="alert alert-danger">
-                            <ul>
-                            @foreach($errors->all as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     @if(\Session::has('success'))
                         <hr />
                       <div class="alert alert-success">
@@ -53,8 +45,5 @@
             </form>
         </div>
     </div>
-
-
-
 
 @endsection
