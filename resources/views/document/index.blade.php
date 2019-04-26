@@ -63,7 +63,7 @@
                                             <a href="{{route('documents.destroy', $document->id)}}">Delete</a> |
                                                 {{--}--}}
                                             <a href="{{route('documents.show', $document->id)}}">Details</a> |
-                                            <a href="{{route('documents.show', $document->id)}}">Download</a>
+                                            <a href="{{route('download', $document->id)}}">Download</a>
                                         </td>
                                     </tr>
                                     @endforeach

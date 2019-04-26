@@ -6,6 +6,7 @@ use App\Document;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class DocumentsController extends Controller
@@ -105,6 +106,13 @@ class DocumentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    public function download($id)
+    {
+        $id = Document::find($id);
+        return Storage::download($id->path, $id->title);
     }
 
     /**
