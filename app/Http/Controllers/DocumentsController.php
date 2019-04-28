@@ -92,7 +92,8 @@ class DocumentsController extends Controller
      */
     public function edit($id)
     {
-        return view('document.edit');
+        $document = Document::find($id);
+        return view('document.edit', compact('document'));
     }
 
     /**
@@ -104,7 +105,15 @@ class DocumentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'description'=>'required'
+        ]);
+
+        $document = Document::find($id);
+        $document->description = $request->get('description');
+        $document->save();
+
+        return redirect('/documents');
     }
 
 
