@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\Download;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +46,7 @@ class DocumentsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'file' => 'required|file|max:250000|mimes:doc,docx,txt',
+            'file' => 'required|file|max:250000|mimes:doc,docx,txt,pdf',
             'description' => 'required'
         ]);
 
@@ -120,6 +121,12 @@ class DocumentsController extends Controller
     public function download($id)
     {
         $id = Document::find($id);
+
+        Download::create([
+            'user_id'=> auth()->user()->id,
+            'document_id' => $id->id
+        ]);
+
         return Storage::download($id->path, $id->title);
     }
 
@@ -148,3 +155,13 @@ class DocumentsController extends Controller
         return redirect('documents');
     }
 }
+
+//zabezpieczenie przed bledami
+//
+//if ($post->delete()) {
+//    if($postl){
+//        return response()->json(['message' => 'deleted']);
+//    }
+//};
+//
+//return response()->json(['error' => 'something went wrong'], 400);
