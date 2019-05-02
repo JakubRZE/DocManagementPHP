@@ -54,7 +54,7 @@
                                             {{ $document->title }}
                                         </td>
                                         <td>
-                                            Downloads
+                                            {{ $document->downloads }}
                                         </td>
                                         <td>
                                             {{--@if (User.IsInRole("Admin"))--}}

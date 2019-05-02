@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\DocumentViewModel;
 use App\Download;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,7 +23,24 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        $documents = Document::all();
+        $doc = Document::all();
+        $documents = array();
+
+            foreach ($doc as $n) {
+            $doc_view = new DocumentViewModel();
+
+            $doc_view->id = $n->id;
+            $doc_view->description = $n->description;
+            $doc_view->created_at = $n->created_at;
+            $doc_view->user_id = $n->user_id;
+            $doc_view->title = $n->title;
+            $doc_view->path = $n->path;
+            $doc_view->type = $n->type;
+            $doc_view->downloads = $n->downloads()->count();
+
+            $documents[] = $doc_view;
+            }
+
         return view('document.index', compact('documents'));
     }
 
