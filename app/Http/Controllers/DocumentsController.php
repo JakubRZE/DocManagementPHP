@@ -21,9 +21,18 @@ class DocumentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $doc = Document::all();
+        $searchString = $request->get('SearchString');
+        if(!$searchString == ''){
+
+            $doc = Document::where('description','LIKE','%'.$searchString.'%')->get();;
+        }
+        else{
+            $doc = Document::all();
+        }
+
+
         $documents = array();
 
             foreach ($doc as $n) {
@@ -41,6 +50,11 @@ class DocumentsController extends Controller
             $documents[] = $doc_view;
             }
 
+        return view('document.index', compact('documents','searchString'));
+    }
+
+    public function search()
+    {
         return view('document.index', compact('documents'));
     }
 
@@ -99,8 +113,9 @@ class DocumentsController extends Controller
 
        $user_name = User::find($document->user_id);
        $full_name = $user_name->first_name.' '.$user_name->last_name;
+       $downloads = $document->downloads()->count();
 
-        return view('document.show',compact('document','full_name'));
+        return view('document.show',compact('document','full_name','downloads'));
     }
 
     /**
@@ -161,16 +176,18 @@ class DocumentsController extends Controller
 
         $user_name = User::find($document->user_id);
         $full_name = $user_name->first_name.' '.$user_name->last_name;
+        $downloads = $document->downloads()->count();
 
-        return view('document.destroy',compact('document','full_name', 'type'));
+        return view('document.destroy',compact('document','full_name', 'type','downloads'));
     }
 
     public function destroy($id)
     {
         $document = Document::find($id);
-        $document->delete();
-
-        return redirect('documents');
+        if ( $document->delete()) {
+            return redirect('documents');
+        }
+        return response()->json(['error' => 'something went wrong'], 400);
     }
 }
 

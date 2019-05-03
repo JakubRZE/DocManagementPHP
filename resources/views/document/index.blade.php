@@ -12,8 +12,9 @@
             </div>
             <div class="col text-right">
                 {{--Search bar--}}
-                <form action = "#" method = "post">
-                <input class="form-control mr-sm-2  d-inline" id="SearchString" name="SearchString" type="text" placeholder="Search" value="@ViewBag.CurrentFilter">
+                <form action = "/documents/search" method = "post">
+                    @csrf
+                <input class="form-control mr-sm-2  d-inline" name="SearchString" type="text" placeholder="Search" value="{{$searchString}}">
                 <button class="btn btn-secondary" type="submit">Submit</button>
                 </form>
             </div>

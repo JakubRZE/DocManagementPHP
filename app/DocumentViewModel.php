@@ -1,6 +1,13 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Jakub
+ * Date: 2019-05-02
+ * Time: 19:44
+ */
 
 namespace App;
+
 
 class DocumentViewModel
 {
@@ -12,5 +19,4 @@ class DocumentViewModel
     public $path;
     public $type;
     public $downloads;
-
 }

@@ -56,7 +56,7 @@
                     </dt>
 
                     <dd>
-                        {{--@Html.DisplayFor(model => model.Downloads)--}}
+                        {{$downloads}}
                     </dd>
 
                 </dl>
