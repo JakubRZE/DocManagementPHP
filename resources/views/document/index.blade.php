@@ -29,16 +29,22 @@
 
                                 <tr class="table-primary">
                                     <th>
-                                        Description
+                                        Description &nbsp;
+                                        <a href="{{route('sort', 'Disc_asc')}}"> <i class="fas fa-arrow-up"></i> </a>
+                                        <a href="{{route('sort', 'Disc_desc')}}"> <i class="fas fa-arrow-down"></i> </a>
                                     </th>
                                     <th>
-                                        Upload date
+                                        Upload date &nbsp;
+                                        <a href="{{route('sort', 'Up_asc')}}"> <i class="fas fa-arrow-up"></i> </a>
+                                        <a href="{{route('sort', 'Up_desc')}}"> <i class="fas fa-arrow-down"></i> </a>
                                     </th>
                                     <th>
                                         File
                                     </th>
                                     <th>
-                                        Downloads
+                                        Downloads &nbsp;
+                                        <a href="{{route('sort', 'Down_asc')}}"> <i class="fas fa-arrow-up"></i> </a>
+                                        <a href="{{route('sort', 'Down_desc')}}"> <i class="fas fa-arrow-down"></i> </a>
                                     </th>
                                     <th></th>
                                 </tr>

@@ -33,7 +33,7 @@ class DocumentsController extends Controller
         }
 
 
-        $documents = array();
+        $documents = collect();
 
             foreach ($doc as $n) {
             $doc_view = new DocumentViewModel();
@@ -53,9 +53,51 @@ class DocumentsController extends Controller
         return view('document.index', compact('documents','searchString'));
     }
 
-    public function search()
+    public function sort( $sortOrder )
     {
-        return view('document.index', compact('documents'));
+
+        switch ($sortOrder) {
+            case "Disc_desc":
+                $doc = Document::orderBy('description', 'desc')->get();
+                break;
+            case "Disc_asc":
+                $doc = Document::orderBy('description', 'asc')->get();
+                break;
+            case "Up_desc":
+                $doc = Document::orderBy('created_at', 'desc')->get();
+                break;
+            case "Up_asc":
+                $doc = Document::orderBy('created_at', 'asc')->get();
+                break;
+
+            default:
+                $doc = Document::All();
+                break;
+        }
+
+        $documents = collect();
+        foreach ($doc as $n) {
+            $doc_view = new DocumentViewModel();
+            $doc_view->id = $n->id;
+            $doc_view->description = $n->description;
+            $doc_view->created_at = $n->created_at;
+            $doc_view->user_id = $n->user_id;
+            $doc_view->title = $n->title;
+            $doc_view->path = $n->path;
+            $doc_view->type = $n->type;
+            $doc_view->downloads = $n->downloads()->count();
+            $documents[] = $doc_view;
+        }
+
+        if ($sortOrder == 'Down_asc') {
+            $documents = $documents->sortBy('downloads');
+        } else if ($sortOrder == 'Down_desc') {
+            $documents = $documents->sortByDesc('download');
+        }
+
+        $searchString ='';
+
+        return view('document.index', compact('documents','sortOrder','searchString'));
     }
 
     /**

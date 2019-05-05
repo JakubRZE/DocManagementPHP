@@ -26,3 +26,5 @@ Route::post('/manage/change_done','ManageController@change_done')->name('changeP
 Route::get('/documents/download/{id}','DocumentsController@download')->name('download');
 Route::get('/documents/delete/{id}','DocumentsController@destroy_show')->name('destroy.show');
 Route::post('/documents/search/{request?}', 'DocumentsController@index');
+
+Route::get('/documents/sort/{sortOrder?}','DocumentsController@sort')->name('sort');
