@@ -92,7 +92,7 @@ class DocumentsController extends Controller
         if ($sortOrder == 'Down_asc') {
             $documents = $documents->sortBy('downloads');
         } else if ($sortOrder == 'Down_desc') {
-            $documents = $documents->sortByDesc('download');
+            $documents = $documents->sortByDesc('downloads');
         }
 
         $searchString ='';
@@ -232,13 +232,3 @@ class DocumentsController extends Controller
         return response()->json(['error' => 'something went wrong'], 400);
     }
 }
-
-//zabezpieczenie przed bledami
-//
-//if ($post->delete()) {
-//    if($postl){
-//        return response()->json(['message' => 'deleted']);
-//    }
-//};
-//
-//return response()->json(['error' => 'something went wrong'], 400);
