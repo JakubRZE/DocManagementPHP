@@ -28,3 +28,8 @@ Route::get('/documents/delete/{id}','DocumentsController@destroy_show')->name('d
 Route::post('/documents/search/{request?}', 'DocumentsController@index');
 
 Route::get('/documents/sort/{sortOrder?}','DocumentsController@sort')->name('sort');
+
+Route::get('/dashboard/active_employees','DashboardController@ActiveEmployees')->name('dash.activ');
+Route::get('/dashboard/active_employees_details/{id}','DashboardController@ActiveEmployeesDetails')->name('dash.activ.det');
+Route::get('/dashboard/useful_docs','DashboardController@DownloadedDocuments')->name('dash.useful');
+Route::get('/dashboard/all_employees','DashboardController@AllEmployees')->name('dash.employe');

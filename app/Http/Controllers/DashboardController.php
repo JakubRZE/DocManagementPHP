@@ -18,20 +18,20 @@ class DashboardController extends Controller
 
     public function ActiveEmployees()
     {
-        return 'Hello Dasboard';
+        return view('dashboard.active_employees');
     }
 
-    public function ActiveEmployeesDetails()
+    public function ActiveEmployeesDetails($id)
     {
-        return 'Hello Dasboard';
+        return view('dashboard.active_employees_details');
     }
     public function DownloadedDocuments()
     {
-        return 'Hello Dasboard';
+        return view('dashboard.downloaded_documents');
     }
     public function AllEmployees()
     {
-        return 'Hello Dasboard';
+        return view('dashboard.all_employees');
     }
 
 }

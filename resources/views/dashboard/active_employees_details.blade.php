@@ -1,7 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Jakub
- * Date: 2019-04-14
- * Time: 22:53
- */
+@extends('layouts.shared')
+
+@section('title', 'Active Employees Details')
+
+@section('content')
+
+
+
+@endsection

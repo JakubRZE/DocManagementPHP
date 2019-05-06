@@ -10,28 +10,28 @@
 
     <div class="margin-top-light mb-3 mx-auto" style="max-width: 40rem;">
         <div class="card-body text-center">
-            {{--<a href="@Url.Action("ActiveEmployees", "Dashboard")" class="customLink">--}}
+            <a href="{{route('dash.activ')}}" class="customLink">
             <div class="card bg-success mx-auto card-body" style="max-width: 30rem;">
                 <h4>The most active employees</h4>
             </div>
-            {{--</a>--}}
+            </a>
 
             <hr />
-            {{--<a href="@Url.Action("DownloadedDocuments", "Dashboard")" class="customLink">--}}
+            <a href="{{route('dash.useful')}}" class="customLink">
             <div class="card bg-info mx-auto card-body" style="max-width: 30rem;">
                 <h4>The most usefull documents</h4>
             </div>
-            {{--</a>--}}
+            </a>
 
             <hr />
             For administrator
             {{--@if (User.IsInRole("Admin"))--}}
                 {
-                {{--<a href="@Url.Action("AllEmployees", "Dashboard")" class="customLink">--}}
+                <a href="{{route('dash.employe')}}" class="customLink">
                 <div class="card bg-warning mx-auto card-body" style="max-width: 30rem;">
                     <h4>List of all employees</h4>
                 </div>
-                {{--</a>--}}
+                </a>
                 }
                 else
                 {
