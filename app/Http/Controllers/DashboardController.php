@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
+use App\User;
+use App\UserViewModel;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,12 +21,29 @@ class DashboardController extends Controller
 
     public function ActiveEmployees()
     {
-        return view('dashboard.active_employees');
+        $user = User::all()->take(10);
+
+        $users = collect();
+
+        foreach ($user as $n) {
+            $user_view = new UserViewModel();
+
+            $user_view->id = $n->id;
+            $user_view->first_name = $n->first_name;
+            $user_view->last_name = $n->last_name;
+            $user_view->upload = Document::where('user_id',$n->id)->count();
+//          $user_view->download = $n->downloads()->count();
+
+            $users[] =  $user_view;
+        }
+
+        return view('dashboard.active_employees',compact('users'));
     }
 
     public function ActiveEmployeesDetails($id)
     {
-        return view('dashboard.active_employees_details');
+        $documents = Document::where('user_id',$id)->get();
+        return view('dashboard.active_employees_details',compact('documents'));
     }
     public function DownloadedDocuments()
     {

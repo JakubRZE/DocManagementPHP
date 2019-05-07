@@ -32,21 +32,22 @@
                                 </th>
                             </tr>
 
-                            {{--@foreach (var item in Model)--}}
+                            @foreach ( $users as $user )
                                 <tr>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.FullName)--}}
+                                        {{ $user->first_name }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Email)--}}
+                                        {{ $user->last_name }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.UploadsCount)--}}
+                                        {{ $user->upload }}
                                     </td>
                                     <td>
-                                        {{--@Html.ActionLink("Details", "ActiveEmployeesDetails", new { userId = item.Id })--}}
+                                        <a href="{{route('dash.activ.det', $user->id)}}">Details</a>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

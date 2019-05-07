@@ -8,7 +8,7 @@
         <div class="card-header row">
             <div class="col" style="padding:7px">
                 <i class="fas fa-table"></i>
-                The most usefull documents
+                The most useful documents
             </div>
             <div class="col text-right">
                 {{--@using (Html.BeginForm())--}}
