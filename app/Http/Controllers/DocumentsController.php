@@ -21,6 +21,7 @@ class DocumentsController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
         $searchString = $request->get('SearchString');
         if(!$searchString == ''){
             $doc = Document::where('description','LIKE','%'.$searchString.'%')->get();;
@@ -45,11 +46,14 @@ class DocumentsController extends Controller
             $documents[] = $doc_view;
             }
 
-        return view('document.index', compact('documents','searchString'));
+        $documents = $documents->sortByDesc('created_at');
+
+        return view('document.index', compact('documents','searchString','user'));
     }
 
     public function sort( $sortOrder )
     {
+        $user = auth()->user();
 
         switch ($sortOrder) {
             case "Disc_desc":
@@ -89,10 +93,9 @@ class DocumentsController extends Controller
         } else if ($sortOrder == 'Down_desc') {
             $documents = $documents->sortByDesc('downloads');
         }
-
         $searchString ='';
 
-        return view('document.index', compact('documents','sortOrder','searchString'));
+        return view('document.index', compact('documents','sortOrder','searchString','user'));
     }
 
     /**

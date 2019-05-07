@@ -64,11 +64,10 @@
                                             {{ $document->downloads }}
                                         </td>
                                         <td>
-                                            {{--@if (User.IsInRole("Admin"))--}}
-                                                {{--{--}}
+                                            @if($user->is_admin)
                                             <a href="{{route('documents.edit', $document->id)}}">Edit</a> |
                                             <a href="{{route('destroy.show', $document->id)}}">Delete</a> |
-                                                {{--}--}}
+                                            @endif
                                             <a href="{{route('documents.show', $document->id)}}">Details</a> |
                                             <a href="{{route('download', $document->id)}}">Download</a>
                                         </td>

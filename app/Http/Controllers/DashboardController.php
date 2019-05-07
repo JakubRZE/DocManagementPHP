@@ -18,12 +18,13 @@ class DashboardController extends Controller
 
     public function Index()
     {
-        return view('dashboard.index');
+        $user = auth()->user();
+        return view('dashboard.index',compact('user'));
     }
 
     public function ActiveEmployees()
     {
-        $user = User::all()->take(10);
+        $user = User::all();
         $users = collect();
 
         foreach ($user as $n) {
@@ -35,6 +36,8 @@ class DashboardController extends Controller
             $user_view->upload = Document::where('user_id',$n->id)->count();
             $users[] =  $user_view;
         }
+
+        $users = $users->sortByDesc('upload')->take(10);
 
         return view('dashboard.active_employees',compact('users'));
     }
