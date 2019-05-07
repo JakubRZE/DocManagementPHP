@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\Download;
 use App\DocumentViewModel;
 use App\User;
 use App\UserViewModel;
@@ -23,7 +24,6 @@ class DashboardController extends Controller
     public function ActiveEmployees()
     {
         $user = User::all()->take(10);
-
         $users = collect();
 
         foreach ($user as $n) {
@@ -46,7 +46,7 @@ class DashboardController extends Controller
     }
     public function DownloadedDocuments(Request $request)
     {
-        $onPage = $request->amount;
+        $onPage = $request->get('amount');
         $document = Document::all();
         $documents = collect();
 
@@ -71,9 +71,32 @@ class DashboardController extends Controller
 
         return view('dashboard.downloaded_documents',compact('documents','onPage'));
     }
-    public function AllEmployees()
+    public function AllEmployees(Request $request)
     {
-        return view('dashboard.all_employees');
+        $searchString = $searchString = $request->get('SearchString');
+
+        if(!$searchString == ''){
+            $user = User::where('first_name','LIKE','%'.$searchString.'%')->orderBy('first_name')->get();
+        }
+        else{
+            $user = User::all();
+        }
+
+        $users = collect();
+        foreach ($user as $n) {
+            $user_view = new UserViewModel();
+
+            $user_view->id = $n->id;
+            $user_view->first_name = $n->first_name;
+            $user_view->last_name = $n->last_name;
+            $user_view->address = $n->address;
+            $user_view->email = $n->email;
+            $user_view->download = Download::where('user_id',$n->id)->groupBy('document_id')->count();
+            $user_view->upload = Document::where('user_id',$n->id)->count();
+            $users[] =  $user_view;
+        }
+
+        return view('dashboard.all_employees', compact('users','searchString'));
     }
 
 }

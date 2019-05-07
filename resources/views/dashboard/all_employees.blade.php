@@ -11,11 +11,11 @@
                 All employees
             </div>
             <div class="col text-right">
-                {{--@using (Html.BeginForm(new { @class = "form-inline" }))--}}
-                {{--{--}}
-                <input class="form-control mr-sm-2  d-inline" id="SearchString" name="SearchString" type="text" placeholder="Search" value="@ViewBag.CurrentFilter">
+                <form action = "/dashboard/all_employees/search/{request?}" method = "post">
+                    @csrf
+                <input class="form-control mr-sm-2  d-inline" name="SearchString" type="text" placeholder="Search" value={{$searchString}}>
                 <button class="btn btn-secondary" type="submit">Submit</button>
-                {{--}--}}
+                </form>
             </div>
         </div>
         <div class="card-body">
@@ -45,27 +45,28 @@
                                     Uploads
                                 </th>
                             </tr>
-                            {{--@foreach (var item in Model)--}}
+                            @foreach ($users as $user)
                                 <tr>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.FirstName)--}}
+                                        {{ $user->first_name }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.LastName)--}}
+                                        {{ $user->last_name }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Address)--}}
+                                        {{ $user->address }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Email)--}}
+                                        {{ $user->email }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Downloads)--}}
+                                        {{ $user->download }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.UploadsCount)--}}
+                                        {{ $user->upload }}
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

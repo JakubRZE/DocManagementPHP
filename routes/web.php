@@ -34,3 +34,4 @@ Route::get('/dashboard/active_employees_details/{id}','DashboardController@Activ
 Route::get('/dashboard/useful_docs','DashboardController@DownloadedDocuments')->name('dash.useful');
 Route::post('/dashboard/useful_docs/on_page/{request?}', 'DashboardController@DownloadedDocuments');
 Route::get('/dashboard/all_employees','DashboardController@AllEmployees')->name('dash.employe');
+Route::post('/dashboard/all_employees/search/{request?}','DashboardController@AllEmployees');

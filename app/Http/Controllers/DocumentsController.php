@@ -18,8 +18,6 @@ class DocumentsController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -99,8 +97,6 @@ class DocumentsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -109,11 +105,7 @@ class DocumentsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -136,19 +128,10 @@ class DocumentsController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $document = Document::find($id);
-
-//        $document = DB::table('documents')
-//            ->join('users', 'documents.user_id', '=', 'users.id')
-//            ->where('documents.id', $id)
-//            ->select('documents.*', 'users.first_name', 'users.last_name')
-//            ->get();
 
        $user_name = User::find($document->user_id);
        $full_name = $user_name->first_name.' '.$user_name->last_name;
@@ -159,9 +142,6 @@ class DocumentsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -171,10 +151,6 @@ class DocumentsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -204,11 +180,7 @@ class DocumentsController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-
     public function destroy_show($id)
     {
         $document = Document::find($id);
