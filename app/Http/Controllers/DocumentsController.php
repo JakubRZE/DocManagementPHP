@@ -25,13 +25,11 @@ class DocumentsController extends Controller
     {
         $searchString = $request->get('SearchString');
         if(!$searchString == ''){
-
             $doc = Document::where('description','LIKE','%'.$searchString.'%')->get();;
         }
         else{
             $doc = Document::all();
         }
-
 
         $documents = collect();
 
@@ -46,7 +44,6 @@ class DocumentsController extends Controller
             $doc_view->path = $n->path;
             $doc_view->type = $n->type;
             $doc_view->downloads = $n->downloads()->count();
-
             $documents[] = $doc_view;
             }
 

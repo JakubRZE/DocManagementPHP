@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\DocumentViewModel;
 use App\User;
 use App\UserViewModel;
 use Illuminate\Http\Request;
@@ -32,8 +33,6 @@ class DashboardController extends Controller
             $user_view->first_name = $n->first_name;
             $user_view->last_name = $n->last_name;
             $user_view->upload = Document::where('user_id',$n->id)->count();
-//          $user_view->download = $n->downloads()->count();
-
             $users[] =  $user_view;
         }
 
@@ -45,9 +44,32 @@ class DashboardController extends Controller
         $documents = Document::where('user_id',$id)->get();
         return view('dashboard.active_employees_details',compact('documents'));
     }
-    public function DownloadedDocuments()
+    public function DownloadedDocuments(Request $request)
     {
-        return view('dashboard.downloaded_documents');
+        $onPage = $request->amount;
+        $document = Document::all();
+        $documents = collect();
+
+        foreach ($document as $n) {
+            $doc_view = new DocumentViewModel();
+
+            $doc_view->description = $n->description;
+            $doc_view->created_at = $n->created_at;
+            $doc_view->title = $n->title;
+            $doc_view->downloads = $n->downloads()->count();
+            $documents[] = $doc_view;
+        }
+
+        if (is_numeric($onPage)) {
+            $documents = $documents->sortByDesc('downloads')->take($onPage);
+        }
+        else
+        {
+            $documents = $documents->sortByDesc('downloads')->take(10);
+            $onPage =10;
+        }
+
+        return view('dashboard.downloaded_documents',compact('documents','onPage'));
     }
     public function AllEmployees()
     {

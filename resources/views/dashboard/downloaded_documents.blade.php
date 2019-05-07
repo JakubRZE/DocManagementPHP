@@ -11,12 +11,12 @@
                 The most useful documents
             </div>
             <div class="col text-right">
-                {{--@using (Html.BeginForm())--}}
-                {{--{--}}
+                <form action ="/dashboard/useful_docs/on_page/{request?}" method = "post">
+                    @csrf
                 <p  class="d-inline">Display on page:</p>
-                <input class="form-control mr-sm-1  d-inline" id="SearchString" name="amount" type="text" placeholder="Search" value="@ViewBag.CurrentFilter">
+                <input class="form-control mr-sm-1  d-inline" name="amount" type="number" step="1" placeholder="Search" value={{$onPage}}>
                 <button class="btn btn-secondary" type="submit">Submit</button>
-                {{--}--}}
+                </form>
             </div>
         </div>
         <div class="card-body">
@@ -40,21 +40,22 @@
                                     Downloads
                                 </th>
                             </tr>
-                            {{--@foreach (var item in Model)--}}
+                            @foreach ($documents as $document)
                                 <tr>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Description)--}}
+                                        {{ $document->description }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.UploadDate)--}}
+                                        {{$document->created_at->format('d M Y')}}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.File)--}}
+                                        {{ $document->title }}
                                     </td>
                                     <td>
-                                        {{--@Html.DisplayFor(modelItem => item.Downloads)--}}
+                                        {{ $document->downloads }}
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
