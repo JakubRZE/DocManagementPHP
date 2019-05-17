@@ -1,4 +1,4 @@
-# PHP Laravel 5.7 MVC app <br /><br />
+# PHP Laravel 5.7 MVC App <br /><br />
 
 Application for documentation management.
 
