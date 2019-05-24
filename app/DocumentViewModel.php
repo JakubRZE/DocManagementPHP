@@ -18,5 +18,6 @@ class DocumentViewModel
     public $title;
     public $path;
     public $type;
+    public $last_download;
     public $downloads;
 }

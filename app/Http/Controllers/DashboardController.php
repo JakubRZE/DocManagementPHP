@@ -60,6 +60,7 @@ class DashboardController extends Controller
             $doc_view->created_at = $n->created_at;
             $doc_view->title = $n->title;
             $doc_view->downloads = $n->downloads()->count();
+            $doc_view->last_download = Download::where('document_id','LIKE',$n->id)->orderBy('created_at','desc')->pluck('created_at')->first();
             $documents[] = $doc_view;
         }
 

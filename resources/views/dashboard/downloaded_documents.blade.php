@@ -37,6 +37,9 @@
                                     File
                                 </th>
                                 <th>
+                                    Last download
+                                </th>
+                                <th>
                                     Downloads
                                 </th>
                             </tr>
@@ -50,6 +53,9 @@
                                     </td>
                                     <td>
                                         {{ $document->title }}
+                                    </td>
+                                    <td>
+                                        {{ $document->last_download}}
                                     </td>
                                     <td>
                                         {{ $document->downloads }}
