@@ -11,7 +11,7 @@
                 The most useful documents
             </div>
             <div class="col text-right">
-                <form action ="/dashboard/useful_docs/on_page/{request?}" method = "post">
+                <form action ="{{route('on.page')}}" method = "post">
                     @csrf
                 <p  class="d-inline">Display on page:</p>
                 <input class="form-control mr-sm-1  d-inline" name="amount" type="number" step="1" placeholder="Search" value={{$onPage}}>

@@ -11,7 +11,7 @@
                 All employees
             </div>
             <div class="col text-right">
-                <form action = "/dashboard/all_employees/search/{request?}" method = "post">
+                <form action ="{{route('emp.search')}}" method = "post">
                     @csrf
                 <input class="form-control mr-sm-2  d-inline" name="SearchString" type="text" placeholder="Search" value={{$searchString}}>
                 <button class="btn btn-secondary" type="submit">Submit</button>

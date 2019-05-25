@@ -32,6 +32,6 @@ Route::get('/documents/sort/{sortOrder?}','DocumentsController@sort')->name('sor
 Route::get('/dashboard/active_employees','DashboardController@ActiveEmployees')->name('dash.activ');
 Route::get('/dashboard/active_employees_details/{id}','DashboardController@ActiveEmployeesDetails')->name('dash.activ.det');
 Route::get('/dashboard/useful_docs','DashboardController@DownloadedDocuments')->name('dash.useful');
-Route::post('/dashboard/useful_docs/on_page/{request?}', 'DashboardController@DownloadedDocuments');
+Route::post('/dashboard/useful_docs/on_page/{request?}', 'DashboardController@DownloadedDocuments')->name('on.page');
 Route::get('/dashboard/all_employees','DashboardController@AllEmployees')->name('dash.employe');
-Route::post('/dashboard/all_employees/search/{request?}','DashboardController@AllEmployees');
+Route::post('/dashboard/all_employees/search/{request?}','DashboardController@AllEmployees')->name('emp.search');
