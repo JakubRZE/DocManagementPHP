@@ -27,3 +27,15 @@
     </ul>
 
     <!-- Bootstrap core JavaScript-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (window.location.href.includes("dashboard"))
+                $("#Dashboard").addClass("active");
+            if (window.location.href.includes("documents") && !window.location.href.includes("create"))
+                $("#Documents").addClass("active");
+            if (window.location.href.includes("activity"))
+                $("#Activity").addClass("active");
+            if (window.location.href.includes("create"))
+                $("#Create").addClass("active");
+        });
+    </script>
