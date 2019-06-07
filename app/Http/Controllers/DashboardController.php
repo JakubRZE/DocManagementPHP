@@ -33,6 +33,7 @@ class DashboardController extends Controller
             $user_view->id = $n->id;
             $user_view->first_name = $n->first_name;
             $user_view->last_name = $n->last_name;
+            $user_view->email = $n->email;
             $user_view->upload = Document::where('user_id',$n->id)->count();
             $users[] =  $user_view;
         }
